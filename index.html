@@ -7,13 +7,13 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@1,700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
-            font-family: 'Jost', sans-serif; 
+            font-family: 'Montserrat', sans-serif; 
             background: #0a0a0a; 
             color: #fff; 
             overflow-x: hidden; 
@@ -31,7 +31,6 @@
             width: 100%; 
             max-width: 600px; 
             margin: 0 auto; 
-            min-height: 200px;
         }
         
         .hero-image { 
@@ -41,66 +40,6 @@
             display: block; 
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
             -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
-        }
-
-        .hero-header-text { 
-            position: absolute; 
-            top: 40px; 
-            left: 8%; 
-            right: 8%; 
-            z-index: 10; 
-        }
-
-        .hero-header-text .gold-italic { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic; 
-            font-weight: 700; 
-            color: #c6a75e; 
-            font-size: clamp(28px, 8vw, 42px); 
-            line-height: 1.1; 
-        }
-
-        .hero-header-text .white-bold { 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 800; 
-            font-size: clamp(16px, 5vw, 28px); 
-            text-transform: uppercase; 
-            color: #fff; 
-            margin: 2px 0; 
-        }
-
-        .hero-header-text .gold-sub { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic; 
-            color: #c6a75e; 
-            font-size: clamp(12px, 3.5vw, 18px); 
-        }
-
-        .name-plate-on-photo { 
-            position: absolute; 
-            bottom: 18%; 
-            left: 8%; 
-            background: #e9dec4; 
-            color: #1a1510; 
-            padding: 12px 20px; 
-            border-radius: 12px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5); 
-            z-index: 12; 
-        }
-
-        .name-plate-on-photo h2 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 800; 
-            font-size: 16px; 
-            text-transform: uppercase; 
-        }
-
-        .name-plate-on-photo p { 
-            font-size: 9px; 
-            font-weight: 700; 
-            color: #8a7a5a; 
-            text-transform: uppercase; 
-            margin-top: 3px; 
         }
 
         .container { 
@@ -222,30 +161,7 @@
 <body>
 
     <div class="hero-wrapper">
-        <div class="hero-header-text">
-            <div class="gold-italic">Побудуй</div>
-            <div class="white-bold">МІЖНАРОДНИЙ БІЗНЕС</div>
-            <div class="gold-sub">в сфері краси та здоров'я</div>
-        </div>
-
-        <picture>
-            <source srcset="./me.webp" type="image/webp">
-            <source srcset="./me.png" type="image/png">
-            <source srcset="./me.jpg" type="image/jpeg">
-            <img 
-                src="./me.png" 
-                class="hero-image" 
-                alt="Марина Пирог"
-                loading="eager"
-                decoding="async"
-                onerror="this.onerror=null; this.src='./me.jpg';"
-            >
-        </picture>
-
-        <div class="name-plate-on-photo">
-            <h2>МАРИНА ПИРОГ</h2>
-            <p>Лідер ТОП-20 на ринку України</p>
-        </div>
+        <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/me.png" class="hero-image" alt="Марина Пирог" loading="eager">
     </div>
 
     <div class="container">
