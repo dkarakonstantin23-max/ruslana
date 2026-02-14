@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Марина Пирог — LR Leader</title>
+    <title>Соколова Руслана — LR Leader</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,7 @@
             text-align: left;
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: clamp(16px, 4.5vw, 26px);
+            font-size: clamp(20px, 5.5vw, 30px);
             color: #E6C27A;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -51,20 +51,40 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.7);
         }
 
-        .hero-bottom-text {
+        .hero-bottom-block {
             position: absolute;
-            bottom: 12%;
-            left: 5%;
-            right: 5%;
+            bottom: 14%;
+            left: 4%;
             text-align: left;
+            z-index: 10;
+        }
+
+        .hero-bottom-cursive {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: clamp(14px, 4vw, 22px);
+            color: #E6C27A;
+            letter-spacing: 1px;
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            margin-bottom: 10px;
+        }
+
+        .hero-bottom-badge {
+            display: inline-block;
+            background: rgba(198, 167, 94, 0.15);
+            border: 1px solid rgba(198, 167, 94, 0.4);
+            color: #E6C27A;
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: clamp(20px, 6vw, 32px);
-            color: #D4A64A;
+            font-size: clamp(10px, 3vw, 14px);
             text-transform: uppercase;
             letter-spacing: 3px;
-            z-index: 10;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            padding: 8px 22px;
+            border-radius: 50px;
+            white-space: nowrap;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
         }
 
         .container { 
@@ -187,12 +207,15 @@
 
     <div class="hero-wrapper">
         <div class="hero-top-text">
-            ТВІЙ ШЛЯХ ДО<br>
-            МІЖНАРОДНОГО<br>
-            БІЗНЕСУ
+            СОКОЛОВА<br>РУСЛАНА
         </div>
-        <img src="./me.png" class="hero-image" alt="Марина Пирог" loading="eager">
-        <div class="hero-bottom-text">ПОЧИНАЄТЬСЯ ТУТ</div>
+        <img src="./me.png" class="hero-image" alt="Соколова Руслана" loading="eager">
+        <div class="hero-bottom-block">
+            <div class="hero-bottom-cursive">
+                Твій шлях до<br>міжнародного бізнесу
+            </div>
+            <div class="hero-bottom-badge">ПОЧИНАЄТЬСЯ ТУТ</div>
+        </div>
     </div>
 
     <div class="container">
@@ -200,7 +223,7 @@
         <div class="section-block fade-in">
             <h2>ПРО МЕНЕ</h2>
             <p>Партнер німецької компанії LR. Розвиваю бізнес у сфері краси та здоров'я на міжнародному ринку. Ділюся досвідом, показую покрокову систему та допомагаю почати без стресу і складних стартів.</p>
-            <div class=""></div>
+            <div class="gold-badge-inline">ВХОДЖУ В ТОП-20 ЛІДЕРІВ LR В УКРАЇНІ</div>
         </div>
 
         <div class="divider-dots">◆ ◆ ◆</div>
