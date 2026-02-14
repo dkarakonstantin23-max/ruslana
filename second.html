@@ -12,19 +12,20 @@
 
         body { 
             font-family: 'Montserrat', sans-serif; 
-            background: #1a1a1a; /* Трохи темніший для контрасту */
+            background: #1a1a1a; 
             color: #fff; 
-            overflow-x: hidden;
             min-height: 100vh;
         }
 
         /* ======= ФІКС ДЛЯ ЛІТЕРИ Є ======= */
-        /* Якщо Montserrat на деяких пристроях не відображає Є, цей клас підмінить шрифт, зберігаючи розмір */
         .fix-e { 
-            font-family: Arial, Helvetica, sans-serif !important; 
-            text-transform: none !important; /* ПРИБРАНО lowercase */
+            /* Використовуємо системний шрифт, який точно підтримує українську */
+            font-family: 'Verdana', 'Arial', sans-serif !important; 
+            text-transform: inherit !important; 
             font-weight: inherit; 
             display: inline;
+            /* Невелике коригування, щоб Arial не здавався завеликим поруч з Montserrat */
+            font-size: 0.95em; 
         }
 
         .container { 
@@ -39,7 +40,7 @@
             border-radius: 20px; 
             padding: 30px; 
             margin-bottom: 25px; 
-            border: 1px solid rgba(198, 167, 94, 0.1);
+            border: 1px solid rgba(198, 167, 94, 0.2);
         }
 
         .section-block h2 { 
@@ -51,28 +52,18 @@
             margin-bottom: 16px; 
         }
 
-        .section-block p { 
+        .section-block p, .section-block li { 
             font-size: 14px; 
             line-height: 1.7; 
-            font-weight: 400; 
             color: #e0e0e0;
-            letter-spacing: 0.3px;
         }
 
-        .section-block ul {
-            list-style: none;
-            margin-top: 12px;
-            padding: 0;
-        }
+        .section-block ul { list-style: none; margin-top: 12px; }
 
         .section-block ul li {
-            font-size: 14px;
-            line-height: 1.6;
-            font-weight: 400;
-            color: #c6a75e;
-            padding: 6px 0;
-            padding-left: 20px;
+            padding: 6px 0 6px 20px;
             position: relative;
+            color: #c6a75e;
         }
 
         .section-block ul li::before {
@@ -87,42 +78,26 @@
         .collab-list li {
             font-size: 16px;
             font-weight: 800;
-            color: #c6a75e;
+            color: #c6a75e !important;
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 12px 0;
+            padding: 12px 0 12px 20px;
             border-bottom: 1px solid rgba(198, 167, 94, 0.15);
-            padding-left: 20px;
-            position: relative;
         }
-
-        .collab-list li:last-child { border-bottom: none; }
 
         .divider-dots { 
             text-align: center; 
-            margin: -10px 0 15px; 
+            margin: 10px 0 25px; 
             color: #c6a75e; 
-            font-size: 18px; 
             letter-spacing: 5px; 
         }
 
-        /* ===== АНКЕТА ===== */
+        /* ===== ФОРМА ===== */
         .form-block {
             background: rgba(0, 0, 0, 0.6);
             border-radius: 20px;
             padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(198, 167, 94, 0.2);
-        }
-
-        .form-block h2 {
-            font-weight: 800;
-            font-size: 20px;
-            text-transform: uppercase;
-            color: #c6a75e;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            text-align: center;
+            border: 1px solid rgba(198, 167, 94, 0.3);
         }
 
         .form-group { margin-bottom: 18px; }
@@ -133,110 +108,58 @@
             font-weight: 600;
             color: #c6a75e;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 8px;
-            opacity: 0.8;
         }
 
         .form-group input {
             width: 100%;
-            padding: 14px 18px;
+            padding: 14px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(198, 167, 94, 0.3);
             border-radius: 12px;
             color: #fff;
-            font-size: 14px;
             outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus {
-            border-color: #c6a75e;
-            background: rgba(198, 167, 94, 0.1);
-            box-shadow: 0 0 10px rgba(198, 167, 94, 0.2);
         }
 
         .btn-submit {
-            display: block;
             width: 100%;
-            padding: 18px 30px;
-            margin-top: 25px;
-            text-align: center;
+            padding: 18px;
             font-weight: 800;
-            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #1a1510;
-            background: linear-gradient(135deg, #a8893a, #c6a75e, #e8d5a3, #d4d4d4, #e8d5a3, #c6a75e, #a8893a);
-            background-size: 400% 400%;
+            background: linear-gradient(135deg, #a8893a, #e8d5a3, #a8893a);
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 25px rgba(198, 167, 94, 0.35);
-            transition: all 0.3s ease;
-            animation: goldSilverShine 4s ease-in-out infinite;
-        }
-
-        @keyframes goldSilverShine {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(198, 167, 94, 0.3);
         }
 
         .btn-back {
             display: block;
             text-align: center;
-            margin-top: 20px;
-            color: rgba(198, 167, 94, 0.6);
-            font-size: 13px;
-            font-weight: 600;
+            margin-top: 30px;
+            color: #c6a75e;
             text-decoration: none;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .fade-in { 
-            opacity: 0; 
-            transform: translateY(20px); 
-            transition: 0.8s ease-out; 
-        }
-
-        .fade-in.visible { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+        .visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
 <div class="container">
-
     <div class="section-block fade-in">
         <h2>ДЛЯ КОГО ЦЯ СПІВПРАЦЯ</h2>
-        <p>Підійде тим, хто хоче додатковий дохід або змінити формат роботи без різких кроків</p>
+        <p>Підійде тим, хто хоче додатковий дохід або змінити формат роботи</p>
         <ul>
             <li>Мамам у декреті</li>
             <li>Власникам б'юті-сфери</li>
             <li>Майстрам краси</li>
             <li>Тим, хто працює в наймі</li>
             <li>Студентам</li>
-        </ul>
-    </div>
-
-    <div class="divider-dots">◆ ◆ ◆</div>
-
-    <div class="section-block fade-in">
-        <h2>РЕЗУЛЬТАТ</h2>
-        <ul>
-            <li>Додатковий дохід</li>
-            <li>Більше впевненості у своїх діях</li>
-            <li>Коло однодумців</li>
-            <li>Розвиток особистого бренду</li>
         </ul>
     </div>
 
@@ -251,121 +174,78 @@
         </ul>
     </div>
 
-    <div class="divider-dots">◆ ◆ ◆</div>
-
-    <div class="form-block fade-in" id="anketa">
-        <h2>АНКЕТА</h2>
-        
+    <div class="form-block fade-in">
+        <h2 style="text-align: center;">АНКЕТА</h2>
         <form id="contactForm" action="https://formspree.io/f/mjgewkdk" method="POST">
             <div class="form-group">
                 <label>Прізвище та ім'я</label>
-                <input type="text" name="name" placeholder="Ваше прізвище та ім'я" required>
+                <input type="text" name="name" required>
             </div>
-
             <div class="form-group">
                 <label>Номер телефону</label>
-                <input type="tel" name="phone" placeholder="+380 __ ___ __ __" required>
+                <input type="tel" name="phone" required>
             </div>
-
-            <div class="form-group">
-                <label>Електронна адреса</label>
-                <input type="email" name="email" placeholder="email@example.com" required>
-            </div>
-
-            <div class="form-group">
-                <label>Місце роботи / Посада</label>
-                <input type="text" name="job" placeholder="Де працюєте та ким">
-            </div>
-
-            <div class="form-group">
-                <label>Поточний дохід (в місяць)</label>
-                <input type="text" name="current_income" placeholder="Ваш поточний дохід">
-            </div>
-
-            <div class="form-group">
-                <label>Бажаний дохід (в місяць)</label>
-                <input type="text" name="desired_income" placeholder="Скільки хочете заробляти">
-            </div>
-
-            <div class="form-group">
-                <label>Скільки годин на день можете приділяти бізнесу з LR?</label>
-                <input type="text" name="hours" placeholder="Наприклад: 2-3 години">
-            </div>
-
             <button type="submit" class="btn-submit" id="submitBtn">НАДІСЛАТИ АНКЕТУ</button>
-            <div style="display:none; color:#ff6b6b; text-align:center; margin-top:15px;" id="errorMsg">Помилка. Спробуйте ще раз.</div>
         </form>
-
-        <div class="success-message" id="successMsg">
-            <h3 style="color:#c6a75e; margin-bottom:10px;">ДЯКУЄМО!</h3>
-            <p>Вашу анкету отримано. Очікуйте на зв'язок.</p>
+        <div id="successMsg" style="display:none; text-align:center; padding:20px; color:#c6a75e;">
+            <h3>ДЯКУЄМО!</h3>
+            <p>Анкету отримано.</p>
         </div>
     </div>
 
     <a href="index.html" class="btn-back fade-in">← Назад</a>
-
 </div>
 
 <script>
-// ===== ВИПРАВЛЕНИЙ СКРИПТ ДЛЯ ЛІТЕРИ Є =====
-function fixCyrillicE(node) {
-    if (node.nodeType === Node.TEXT_NODE) {
-        if (/[єЄ]/.test(node.textContent)) {
-            var fragment = document.createDocumentFragment();
-            // Розбиваємо текст, зберігаючи регістр літер
-            node.textContent.split(/([єЄ])/).forEach(function(part) {
-                if (part === 'є' || part === 'Є') {
-                    var span = document.createElement('span');
-                    span.className = 'fix-e';
-                    span.textContent = part; // ТУТ ТЕПЕР ЗБЕРІГАЄТЬСЯ РЕГІСТР
-                    fragment.appendChild(span);
-                } else if (part) {
-                    fragment.appendChild(document.createTextNode(part));
-                }
-            });
-            node.parentNode.replaceChild(fragment, node);
+// Функція для автоматичної підміни літери Є на інший шрифт
+function replaceE(node) {
+    if (node.nodeType === 3) { // Текстовий вузол
+        if (/[єЄ]/.test(node.nodeValue)) {
+            const span = document.createElement('span');
+            // Використовуємо регулярний вираз, щоб знайти Є та є, загортаючи їх у тег
+            span.innerHTML = node.nodeValue.replace(/([єЄ])/g, '<span class="fix-e">$1</span>');
+            node.parentNode.insertBefore(span, node);
+            node.parentNode.removeChild(node);
         }
-    } else if (node.nodeType === Node.ELEMENT_NODE && 
-               !['SCRIPT', 'STYLE', 'INPUT', 'TEXTAREA'].includes(node.tagName)) {
-        Array.from(node.childNodes).forEach(fixCyrillicE);
+    } else if (node.nodeType === 1 && node.childNodes && !/(script|style|input|textarea)/i.test(node.tagName)) {
+        for (let i = 0; i < node.childNodes.length; i++) {
+            replaceE(node.childNodes[i]);
+        }
     }
 }
-fixCyrillicE(document.body);
 
-// ===== Анімація появи =====
-var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+// Запускаємо заміну після завантаження
+window.onload = function() {
+    replaceE(document.body);
+    
+    // Анімація появи
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
     });
-}, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+};
 
-document.querySelectorAll('.fade-in').forEach(function(el) {
-    observer.observe(el);
-});
-
-// ===== Відправка форми =====
-var form = document.getElementById('contactForm');
-form.addEventListener('submit', function(e) {
+// Відправка форми
+const form = document.getElementById('contactForm');
+form.onsubmit = async (e) => {
     e.preventDefault();
-    var btn = document.getElementById('submitBtn');
+    const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.textContent = 'НАДСИЛАЮ...';
-
-    fetch(form.action, {
+    btn.innerText = 'НАДСИЛАЮ...';
+    
+    const response = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
-    }).then(function(res) {
-        if (res.ok) {
-            form.style.display = 'none';
-            document.getElementById('successMsg').style.display = 'block';
-        } else {
-            alert('Помилка відправки. Спробуйте пізніше.');
-            btn.disabled = false;
-            btn.textContent = 'НАДІСЛАТИ АНКЕТУ';
-        }
     });
-});
+    
+    if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+    }
+};
 </script>
 
 </body>
