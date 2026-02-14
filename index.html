@@ -14,7 +14,7 @@
         
         body { 
             font-family: 'Jost', sans-serif; 
-            background: #333; 
+            background: #0a0a0a; 
             color: #fff; 
             overflow-x: hidden; 
         }
@@ -32,7 +32,6 @@
             max-width: 600px; 
             margin: 0 auto; 
             min-height: 200px;
-            background: #2a2a2a;
         }
         
         .hero-image { 
@@ -50,7 +49,6 @@
             left: 8%; 
             right: 8%; 
             z-index: 10; 
-            visibility: hidden;
         }
 
         .hero-header-text .gold-italic { 
@@ -82,13 +80,12 @@
             position: absolute; 
             bottom: 18%; 
             left: 8%; 
-            background: rgba(0, 0, 0, 0.5); 
+            background: #e9dec4; 
             color: #1a1510; 
             padding: 12px 20px; 
             border-radius: 12px; 
             box-shadow: 0 8px 25px rgba(0,0,0,0.5); 
             z-index: 12; 
-            visibility: hidden;
         }
 
         .name-plate-on-photo h2 { 
@@ -173,39 +170,35 @@
         }
 
         .btn-next { 
-            display: block;
-            width: 80%;
-            max-width: 300px;
-            margin: 30px auto 40px;
-            padding: 16px 30px;
-            text-align: center;
-            text-decoration: none;
+            display: block; 
+            width: 100%; 
+            max-width: 300px; 
+            margin: 40px auto 20px; 
+            padding: 22px; 
+            background: linear-gradient(135deg, #c6a75e, #e0bf75); 
+            border-radius: 50px; 
+            text-align: center; 
+            color: #1a1510; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            box-shadow: 0 10px 25px rgba(198,167,94,0.4); 
             font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
             font-size: 16px;
-            text-transform: uppercase;
             letter-spacing: 3px;
-            color: #1a1510;
-            background: linear-gradient(135deg, #c6a75e, #e8d5a3, #c6a75e, #a8893a);
-            background-size: 300% 300%;
-            border-radius: 50px;
-            box-shadow: 0 6px 25px rgba(198, 167, 94, 0.4);
             transition: all 0.3s ease;
-            animation: btnShine 3s ease-in-out infinite;
         }
 
         .btn-next:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 35px rgba(198, 167, 94, 0.5);
-        }
-
-        @keyframes btnShine {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            box-shadow: 0 14px 35px rgba(198,167,94,0.5);
         }
 
         .social-footer { 
-            display: none;
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            margin: 40px 0 60px; 
         }
 
         .social-icon { 
@@ -235,7 +228,6 @@
             <div class="gold-sub">в сфері краси та здоров'я</div>
         </div>
 
-        <!-- ФОТО: пробуем png, потом jpg, потом webp -->
         <picture>
             <source srcset="./me.webp" type="image/webp">
             <source srcset="./me.png" type="image/png">
