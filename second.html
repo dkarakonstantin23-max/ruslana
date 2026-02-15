@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Марина Пирог — Співпраця</title>
+    <title>Соколова Русална — Співпраця</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -280,6 +280,11 @@
             </div>
 
             <div class="form-group">
+                <label>Додайте свій Instagram</label>
+                <input type="text" name="instagram" placeholder="@username або посилання" required>
+            </div>
+
+            <div class="form-group">
                 <label>Місце роботи / Посада</label>
                 <input type="text" name="job" placeholder="Де працюєте та ким">
             </div>
@@ -370,6 +375,10 @@ form.addEventListener('submit', function(e) {
             btn.disabled = false;
             btn.textContent = 'НАДІСЛАТИ АНКЕТУ';
         }
+    }).catch(function(error) {
+        alert('Помилка зв\'язку.');
+        btn.disabled = false;
+        btn.textContent = 'НАДІСЛАТИ АНКЕТУ';
     });
 });
 </script>
