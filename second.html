@@ -4,72 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Соколова Русална — Співпраця</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background: #333; 
-            color: #fff; 
+        :root {
+            --gold: #c6a75e;
+            --gold-light: #e8d5a3;
+            --gold-dark: #a8893a;
+            --bg: #1e1a14;
+            --card-bg: rgba(0,0,0,0.45);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: #fff;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* ======= ФІКС ДЛЯ ЛІТЕРИ Є ======= */
-        .fix-e { 
-            font-family: 'Verdana', 'Arial', sans-serif !important; 
-            text-transform: inherit !important; 
-            font-weight: inherit; 
-            display: inline;
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
         }
 
-        .container { 
-            width: 92%; 
-            max-width: 600px; 
-            margin: 0 auto; 
-            padding: 40px 0 60px;
+        /* Ambient glow bg */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -30%;
+            left: -20%;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(198,167,94,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .section-block { 
-            background: rgba(0, 0, 0, 0.5); 
-            border-radius: 20px; 
-            padding: 30px; 
-            margin-bottom: 25px; 
+        .container {
+            width: 92%;
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 50px 0 80px;
+            position: relative;
+            z-index: 1;
         }
 
-        .section-block h2 { 
-            font-weight: 800; 
-            font-size: 20px; 
+        /* ─── HEADER ─── */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(-40px);
+            animation: slideDown 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
+        }
+
+        .page-header .eyebrow {
+            font-size: 11px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            color: #c6a75e;
-            letter-spacing: 2px;
-            margin-bottom: 16px; 
+            color: rgba(198,167,94,0.55);
+            margin-bottom: 10px;
         }
 
-        .section-block p { 
-            font-size: 14px; 
-            line-height: 1.7; 
-            font-weight: 400; 
-            color: #c6a75e;
-            letter-spacing: 0.3px;
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 8vw, 52px);
+            font-weight: 700;
+            color: var(--gold-light);
+            line-height: 1.1;
+            letter-spacing: 2px;
+        }
+
+        .header-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 18px auto 0;
+        }
+
+        /* ─── BLOCKS ─── */
+        .section-block {
+            background: var(--card-bg);
+            border: 1px solid rgba(198,167,94,0.12);
+            border-radius: 20px;
+            padding: 32px 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        .section-block.from-right {
+            transform: translateX(60px);
+        }
+
+        .section-block.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-block h2 {
+            font-weight: 800;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .section-block p {
+            font-size: 14px;
+            line-height: 1.75;
+            color: rgba(198,167,94,0.85);
         }
 
         .section-block ul {
             list-style: none;
             margin-top: 12px;
-            padding: 0;
         }
 
         .section-block ul li {
             font-size: 14px;
-            line-height: 1.6;
-            font-weight: 400;
-            color: #c6a75e;
-            padding: 6px 0;
-            padding-left: 20px;
+            line-height: 1.65;
+            color: rgba(198,167,94,0.85);
+            padding: 7px 0 7px 22px;
             position: relative;
         }
 
@@ -77,21 +145,19 @@
             content: '◆';
             position: absolute;
             left: 0;
-            color: #c6a75e;
-            font-size: 8px;
-            top: 10px;
+            color: var(--gold-dark);
+            font-size: 7px;
+            top: 11px;
         }
 
         .collab-list li {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 800;
-            color: #c6a75e;
+            color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(198, 167, 94, 0.15);
-            padding-left: 20px;
-            position: relative;
+            letter-spacing: 3px;
+            padding: 14px 0 14px 22px;
+            border-bottom: 1px solid rgba(198,167,94,0.12);
         }
 
         .collab-list li:last-child { border-bottom: none; }
@@ -100,86 +166,175 @@
             content: '—';
             position: absolute;
             left: 0;
-            color: #c6a75e;
         }
 
-        .divider-dots { 
-            text-align: center; 
-            margin: -10px 0 15px; 
-            color: #c6a75e; 
-            font-size: 18px; 
-            letter-spacing: 5px; 
+        .divider-dots {
+            text-align: center;
+            margin: 5px 0 20px;
+            color: rgba(198,167,94,0.4);
+            font-size: 16px;
+            letter-spacing: 8px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-play-state: paused;
         }
 
-        /* ===== АНКЕТА ===== */
+        .divider-dots.visible { animation-play-state: running; }
+
+        /* ─── FORM ─── */
         .form-block {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            padding: 30px;
+            background: var(--card-bg);
+            border: 1px solid rgba(198,167,94,0.15);
+            border-radius: 24px;
+            padding: 36px 32px;
             margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        .form-block.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .form-block h2 {
-            font-weight: 800;
-            font-size: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 28px;
             text-transform: uppercase;
-            color: #c6a75e;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
+            color: var(--gold-light);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
-        .form-group { margin-bottom: 18px; }
+        .form-subtitle {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(198,167,94,0.45);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .form-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(198,167,94,0.3), transparent);
+            margin: 28px 0;
+        }
+
+        .form-section-title {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(198,167,94,0.5);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(198,167,94,0.15);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .form-group.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
         .form-group label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            color: #c6a75e;
+            color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            margin-bottom: 9px;
         }
 
-        .form-group input {
+        .form-group label .req {
+            color: rgba(198,167,94,0.5);
+            margin-left: 3px;
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(198, 167, 94, 0.3);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(198,167,94,0.2);
             border-radius: 12px;
             color: #fff;
+            font-family: 'Montserrat', sans-serif;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+            resize: none;
         }
 
-        .form-group input:focus {
-            border-color: #c6a75e;
-            background: rgba(198, 167, 94, 0.05);
+        .form-group textarea {
+            min-height: 90px;
+            line-height: 1.6;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+            background: rgba(198,167,94,0.05);
+            box-shadow: 0 0 0 3px rgba(198,167,94,0.08);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.2);
         }
 
         .btn-submit {
             display: block;
             width: 100%;
-            padding: 18px 30px;
-            margin-top: 25px;
+            padding: 20px 30px;
+            margin-top: 30px;
             text-align: center;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: #1a1510;
             background: linear-gradient(135deg, #a8893a, #c6a75e, #e8d5a3, #d4d4d4, #e8d5a3, #c6a75e, #a8893a);
             background-size: 400% 400%;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 25px rgba(198, 167, 94, 0.35);
-            transition: all 0.3s ease;
-            animation: goldSilverShine 4s ease-in-out infinite;
+            box-shadow: 0 8px 30px rgba(198,167,94,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: goldShine 4s ease-in-out infinite;
         }
 
-        @keyframes goldSilverShine {
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(198,167,94,0.45);
+        }
+
+        .btn-submit:active { transform: translateY(0); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        @keyframes goldShine {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
@@ -188,43 +343,85 @@
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: rgba(198, 167, 94, 0.5);
-            font-size: 13px;
+            color: rgba(198,167,94,0.4);
+            font-size: 12px;
             font-weight: 600;
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
+            transition: color 0.3s;
         }
+
+        .btn-back:hover { color: var(--gold); }
 
         .success-message {
             display: none;
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
         .success-icon {
-            width: 70px;
-            height: 70px;
-            border: 3px solid #c6a75e;
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 24px;
             font-size: 36px;
-            color: #c6a75e;
+            color: var(--gold);
+            animation: pulseGold 2s ease-in-out infinite;
         }
 
-        .fade-in { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        @keyframes pulseGold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(198,167,94,0.3); }
+            50% { box-shadow: 0 0 0 15px rgba(198,167,94,0); }
+        }
+
+        /* ─── KEYFRAMES ─── */
+        @keyframes slideDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stagger delays for form groups */
+        .form-group:nth-child(1) { transition-delay: 0.05s; }
+        .form-group:nth-child(2) { transition-delay: 0.1s; }
+        .form-group:nth-child(3) { transition-delay: 0.15s; }
+        .form-group:nth-child(4) { transition-delay: 0.2s; }
+        .form-group:nth-child(5) { transition-delay: 0.25s; }
+        .form-group:nth-child(6) { transition-delay: 0.3s; }
+        .form-group:nth-child(7) { transition-delay: 0.35s; }
+        .form-group:nth-child(8) { transition-delay: 0.4s; }
+        .form-group:nth-child(9) { transition-delay: 0.45s; }
+        .form-group:nth-child(10) { transition-delay: 0.5s; }
+        .form-group:nth-child(11) { transition-delay: 0.55s; }
+        .form-group:nth-child(12) { transition-delay: 0.6s; }
+        .form-group:nth-child(13) { transition-delay: 0.65s; }
+        .form-group:nth-child(14) { transition-delay: 0.7s; }
+        .form-group:nth-child(15) { transition-delay: 0.75s; }
+        .form-group:nth-child(16) { transition-delay: 0.8s; }
+        .form-group:nth-child(17) { transition-delay: 0.85s; }
+        .form-group:nth-child(18) { transition-delay: 0.9s; }
     </style>
 </head>
 <body>
 
 <div class="container">
 
-    <div class="section-block fade-in">
-        <h2>ДЛЯ КОГО ЦЯ СПІВПРАЦЯ</h2>
+    <div class="page-header">
+        <div class="eyebrow">Rusalna Sokolova</div>
+        <h1>Співпраця</h1>
+        <div class="header-line"></div>
+    </div>
+
+    <div class="section-block" data-dir="left">
+        <h2>Для кого ця співпраця</h2>
         <p>Підійде тим, хто хоче додатковий дохід або змінити формат роботи без різких кроків</p>
         <ul>
             <li>Мамам у декреті</li>
@@ -237,8 +434,8 @@
 
     <div class="divider-dots">◆ ◆ ◆</div>
 
-    <div class="section-block fade-in">
-        <h2>РЕЗУЛЬТАТ</h2>
+    <div class="section-block" data-dir="right">
+        <h2>Результат</h2>
         <ul>
             <li>Додатковий дохід</li>
             <li>Більше впевненості у своїх діях</li>
@@ -249,8 +446,8 @@
 
     <div class="divider-dots">◆ ◆ ◆</div>
 
-    <div class="section-block fade-in">
-        <h2>ВАРІАНТИ СПІВПРАЦІ</h2>
+    <div class="section-block" data-dir="left">
+        <h2>Варіанти співпраці</h2>
         <ul class="collab-list">
             <li>Клієнт</li>
             <li>VIP</li>
@@ -260,128 +457,202 @@
 
     <div class="divider-dots">◆ ◆ ◆</div>
 
-    <div class="form-block fade-in" id="anketa">
-        <h2>АНКЕТА</h2>
-        
+    <!-- FORM -->
+    <div class="form-block" id="anketa">
+        <h2>Анкета</h2>
+        <div class="form-subtitle">Заповніть усі поля зі зірочкою</div>
+
         <form id="contactForm" action="https://formspree.io/f/mjgewkdk" method="POST">
+
+            <div class="form-section-title">Контактна інформація</div>
+
             <div class="form-group">
-                <label>Прізвище та ім'я</label>
+                <label>Прізвище та ім'я <span class="req">*</span></label>
                 <input type="text" name="name" placeholder="Ваше прізвище та ім'я" required>
             </div>
 
             <div class="form-group">
-                <label>Номер телефону</label>
-                <input type="tel" name="phone" placeholder="+380 __ ___ __ __" required>
+                <label>Контакт для зв'язку: телефон / Instagram / Telegram <span class="req">*</span></label>
+                <input type="text" name="contact" placeholder="+380... або @username" required>
             </div>
 
             <div class="form-group">
-                <label>Електронна адреса</label>
-                <input type="email" name="email" placeholder="email@example.com" required>
+                <label>Місто проживання <span class="req">*</span></label>
+                <input type="text" name="city" placeholder="Ваше місто" required>
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="form-section-title">Робота та фінанси</div>
+
+            <div class="form-group">
+                <label>Місце роботи / Посада <span class="req">*</span></label>
+                <input type="text" name="job" placeholder="Де працюєте та ким" required>
             </div>
 
             <div class="form-group">
-                <label>Додайте свій Instagram</label>
-                <input type="text" name="instagram" placeholder="@username або посилання" required>
+                <label>Поточний дохід на місяць <span class="req">*</span></label>
+                <input type="text" name="current_income" placeholder="Ваш поточний дохід" required>
             </div>
 
             <div class="form-group">
-                <label>Місце роботи / Посада</label>
-                <input type="text" name="job" placeholder="Де працюєте та ким">
+                <label>Скільки хотілось би заробляти на місяць для комфортного життя? <span class="req">*</span></label>
+                <input type="text" name="desired_income" placeholder="Бажаний дохід" required>
             </div>
 
             <div class="form-group">
-                <label>Поточний дохід (в місяць)</label>
-                <input type="text" name="current_income" placeholder="Ваш поточний дохід">
+                <label>Скільки годин готові приділяти роботі? <span class="req">*</span></label>
+                <input type="text" name="hours" placeholder="Наприклад: 2-3 години на день" required>
             </div>
 
             <div class="form-group">
-                <label>Бажаний дохід (в місяць)</label>
-                <input type="text" name="desired_income" placeholder="Скільки хочете заробляти">
+                <label>Як швидко хотіли б вийти на бажаний дохід? <span class="req">*</span></label>
+                <input type="text" name="timeline" placeholder="Наприклад: за 3-6 місяців" required>
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="form-section-title">Про вас і ваше життя</div>
+
+            <div class="form-group">
+                <label>В якій точці власного життя ви знаходитесь? Що викликає розчарування і чим ви пишаєтесь? <span class="req">*</span></label>
+                <textarea name="life_point" placeholder="Поділіться своїми відчуттями..." required></textarea>
             </div>
 
             <div class="form-group">
-                <label>Скільки годин на день можете приділяти бізнесу з LR?</label>
-                <input type="text" name="hours" placeholder="Наприклад: 2-3 години">
+                <label>Як би ви описали свою роботу та її роль у вашому житті? Що вас у поточній діяльності не влаштовує? <span class="req">*</span></label>
+                <textarea name="work_feelings" placeholder="Розкажіть про свою роботу..." required></textarea>
             </div>
 
-            <button type="submit" class="btn-submit" id="submitBtn">НАДІСЛАТИ АНКЕТУ</button>
-            <div id="errorMsg" style="display:none; color:#ff6b6b; text-align:center; margin-top:15px;">Щось пішло не так.</div>
+            <div class="form-group">
+                <label>Що хотілось би змінити в житті? <span class="req">*</span></label>
+                <textarea name="changes" placeholder="Які зміни ви хочете побачити..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Яка ваша реальна мрія? <span class="req">*</span></label>
+                <textarea name="dream" placeholder="Розкажіть про вашу мрію..." required></textarea>
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="form-section-title">Про мережевий маркетинг</div>
+
+            <div class="form-group">
+                <label>Як ви ставитесь до мережевого маркетингу? <span class="req">*</span></label>
+                <textarea name="mlm_attitude" placeholder="Вірите у перспективу, ставитесь зі скепсисом, захоплюєтесь..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Які є причини недовіри та упередження до мережевого? <span class="req">*</span></label>
+                <textarea name="mlm_doubts" placeholder="Поділіться своїми сумнівами та упередженнями..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Чи є досвід роботи з іншими компаніями? Негативний чи позитивний і чому? <span class="req">*</span></label>
+                <textarea name="mlm_experience" placeholder="Розкажіть про ваш досвід..." required></textarea>
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="form-section-title">Про співпрацю зі мною</div>
+
+            <div class="form-group">
+                <label>Що хотіли б отримати в роботі зі мною? <span class="req">*</span></label>
+                <textarea name="expectations" placeholder="Ваші очікування від співпраці..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Який формат співпраці був би для вас найбільш комфортний? <span class="req">*</span></label>
+                <textarea name="format" placeholder="Онлайн, офлайн, змішаний формат..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Чи є сумніви, що у вас може не вийти побудувати цей бізнес? Якщо є — які? <span class="req">*</span></label>
+                <textarea name="fears" placeholder="Поділіться своїми сумнівами та страхами..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Що для вас важливо в роботі зі мною? <span class="req">*</span></label>
+                <textarea name="important" placeholder="Ваші цінності та пріоритети в роботі..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Надіслати анкету</button>
         </form>
 
         <div class="success-message" id="successMsg">
             <div class="success-icon">✓</div>
-            <h3 style="color:#c6a75e; text-transform:uppercase;">ДЯКУЮ!</h3>
-            <p style="color:#c6a75e;">Вашу анкету отримано. Я зв'яжусь з вами найближчим часом.</p>
+            <h3 style="color:var(--gold-light); font-family:'Cormorant Garamond',serif; font-size:28px; margin-bottom:16px;">Дякую!</h3>
+            <p style="color:rgba(198,167,94,0.75); font-size:14px; line-height:1.7;">Вашу анкету отримано.<br>Я зв'яжусь з вами найближчим часом.</p>
         </div>
     </div>
 
-    <a href="index.html" class="btn-back fade-in">← Назад</a>
+    <a href="index.html" class="btn-back">← Назад</a>
 
 </div>
 
 <script>
-// ===== ФІКС ЛІТЕРИ Є (Зберігає велику/малу та міняє шрифт) =====
-function fixCyrillicE(node) {
-    if (node.nodeType === 3) {
-        if (/[єЄ]/.test(node.nodeValue)) {
-            var fragment = document.createDocumentFragment();
-            node.nodeValue.split(/([єЄ])/).forEach(function(part) {
-                if (part === 'є' || part === 'Є') {
-                    var span = document.createElement('span');
-                    span.className = 'fix-e';
-                    span.textContent = part;
-                    fragment.appendChild(span);
-                } else if (part) {
-                    fragment.appendChild(document.createTextNode(part));
-                }
+// ── Scroll animations ──
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+
+            if (el.dataset.dir === 'right') el.classList.add('from-right');
+
+            requestAnimationFrame(() => {
+                el.classList.add('visible');
             });
-            node.parentNode.replaceChild(fragment, node);
+
+            // Animate children form-groups if inside form
+            el.querySelectorAll('.form-group').forEach(fg => {
+                requestAnimationFrame(() => fg.classList.add('visible'));
+            });
+
+            // Divider dots
+            if (el.classList.contains('divider-dots')) el.classList.add('visible');
         }
-    } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE', 'INPUT', 'TEXTAREA'].includes(node.tagName)) {
-        Array.from(node.childNodes).forEach(fixCyrillicE);
-    }
-}
-fixCyrillicE(document.body);
-
-// ===== Анімація появи =====
-var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
-document.querySelectorAll('.fade-in').forEach(function(el) {
+document.querySelectorAll('.section-block, .form-block, .divider-dots').forEach(el => {
     observer.observe(el);
 });
 
-// ===== Formspree Відправка =====
-var form = document.getElementById('contactForm');
+// Observe individual form groups
+const formGroupObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.form-group').forEach(el => formGroupObserver.observe(el));
+
+// ── Form submit ──
+const form = document.getElementById('contactForm');
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var btn = document.getElementById('submitBtn');
+    const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.textContent = 'НАДСИЛАЮ...';
+    btn.textContent = 'Надсилаю...';
 
     fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
-    }).then(function(response) {
-        if (response.ok) {
+    }).then(res => {
+        if (res.ok) {
             form.style.display = 'none';
-            document.getElementById('successMsg').style.display = 'block';
+            const msg = document.getElementById('successMsg');
+            msg.style.display = 'block';
+            msg.style.animation = 'fadeUp 0.8s ease forwards';
         } else {
             alert('Помилка. Спробуйте ще раз.');
             btn.disabled = false;
-            btn.textContent = 'НАДІСЛАТИ АНКЕТУ';
+            btn.textContent = 'Надіслати анкету';
         }
-    }).catch(function(error) {
+    }).catch(() => {
         alert('Помилка зв\'язку.');
         btn.disabled = false;
-        btn.textContent = 'НАДІСЛАТИ АНКЕТУ';
+        btn.textContent = 'Надіслати анкету';
     });
 });
 </script>
-
 </body>
 </html>
